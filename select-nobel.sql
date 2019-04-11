@@ -47,4 +47,6 @@ select * from nobel where winner LIKE 'EUGENE O''NEILL';
 SELECT winner, yr, subject from nobel where winner LIKE 'sir%' ORDER BY yr DESC, winner;
 
 /*Show the 1984 winners and subject ordered by subject and winner name; but list Chemistry and Physics last.*/
-select winner, subject, subject IN ('Physics','Chemistry')from nobel where yr=1984 ORDER BY subject IN ('Physics','Chemistry'),subject,winner;
+SELECT winner, subject
+  FROM nobel where yr = 1984
+  ORDER BY subject IN ('Physics', 'Chemistry'), subject, winner;
