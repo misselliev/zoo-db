@@ -5,7 +5,7 @@ SELECT matchid, player FROM goal
 
 /*2. Show id, stadium, team1, team2 for just game 1012*/
 SELECT DISTINCT id,stadium,team1,team2
-  FROM game INNER JOIN goal 
+FROM game INNER JOIN goal 
 ON game.id = goal.matchid WHERE matchid=1012;
 
 /*3. Modify it to show the player, teamid, stadium and mdate for every German goal.*/

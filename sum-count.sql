@@ -21,3 +21,4 @@ SELECT continent, count(name) FROM world WHERE population>=10000000 group by con
 
 /*8. List the continents that have a total population of at least 100 million.*/
 SELECT continent FROM world group by continent HAVING sum(population)>= 100000000;
+
