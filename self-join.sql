@@ -46,8 +46,22 @@ FROM route a JOIN route b ON
 WHERE stopa.name='Craiglockhart' AND stopb.name='Tollcross'
 
 /*9. Give a distinct list of the stops which may be reached from 'Craiglockhart' by taking one bus, including 'Craiglockhart' itself, offered by the LRT company. Include the company and bus no. of the relevant services.*/
-
+SELECT DISTINCT bstop.name, a.company, a.num FROM
+	route AS a JOIN route AS b ON (a.company = b.company AND a.num = b.num)
+			   JOIN stops AS astop ON (a.stop = astop.id)
+			   JOIN stops AS bstop ON (b.stop = bstop.id)
+	WHERE astop.name = 'Craiglockhart';
 
 /*10. Find the routes involving two buses that can go from Craiglockhart to Lochend.
 Show the bus no. and company for the first bus, the name of the stop for the transfer,
 and the bus no. and company for the second bus.*/
+SELECT a.num, a.company, STB.name, c.num, c.company
+FROM route a, route b, route c, route d, stops STA, stops STB, stops STC, stops STD
+WHERE (a.company = b.company AND a.num = b.num)
+AND (c.company = d.company AND c.num = d.num)
+AND a.stop = STA.id
+AND b.stop = STB.id
+AND c.stop = STC.id
+AND d.stop = STD.id
+AND STA.name = 'Craiglockhart' AND STD.name = 'Lochend' AND STB.name = STC.name
+ORDER BY b.num, STB.name, d.num, LENGTH(a.num), LENGTH(c.num);
