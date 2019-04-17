@@ -1,4 +1,4 @@
-/*1. List the teachers who have NULL for their department.*/
+/*.1. List the teachers who have NULL for their department.*/
 SELECT te.name FROM teacher AS te 
 LEFT JOIN dept As de ON dept=de.id 
 where dept IS NULL;
